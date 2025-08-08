@@ -1,53 +1,92 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asesoría de Emprendimientos Digitales</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="hero">
-        <div class="container">
-            <h1>Impulsa Tu Negocio Digital al Siguiente Nivel</h1>
-            <p>Te acompañamos con estrategia, marca, automatización y crecimiento.</p>
-            <button onclick="agendarLlamada()">Agenda tu asesoría gratuita</button>
-        </div>
-    </header>
+<html>
+  <head>
+    <title>AR.js Demo - QR activa imágenes</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader para indicar que AR.js está cargando -->
+    <div class="arjs-loader">
+      <div>Cargando Realidad Aumentada...</div>
+    </div>
 
-    <section class="about">
-        <div class="container">
-            <h2>¿Quiénes Somos?</h2>
-            <p>Somos una firma especializada en ayudar a emprendedores y marcas personales a construir y escalar sus negocios en el entorno digital.</p>
-        </div>
-    </section>
+    <!-- Escena A-Frame con AR.js -->
+    <a-scene
+      vr-mode-ui="enabled: true;"
+      renderer="logarithmicDepthBuffer: true;"
+      arjs="sourceType: webcam; debugUIEnabled: true;"
+      embedded
+      id="arScene"
+    >
+      <!--
+        INSTRUCCIONES:
+        1. Genera un CÓDIGO QR que contenga el valor "myarscene" (o el que quieras).
+        2. Imprime ese código QR.
+        3. Asegúrate de que tus imágenes FIG1-FIG5 estén en la carpeta 'resources'
+           (o la ruta que especifiques en 'src').
+        4. Apunta la cámara al QR impreso para ver las imágenes en RA.
+      -->
 
-    <section class="services">
-        <div class="container">
-            <h2>Qué Hacemos</h2>
-            <ul>
-                <li><strong>Estrategia Digital Personalizada:</strong> hoja de ruta para lanzar o escalar tu negocio online.</li>
-                <li><strong>Diseño y Branding:</strong> crea tu identidad visual profesional.</li>
-                <li><strong>Marketing & Automatización:</strong> funnels, email marketing, redes sociales.</li>
-                <li><strong>Mentorías 1:1:</strong> guía personalizada paso a paso.</li>
-            </ul>
-        </div>
-    </section>
+      <script>
+        window.addEventListener('arjs-video-loaded', () => {
+          const loader = document.querySelector('.arjs-loader');
+          if (loader) {
+            loader.style.display = 'none';
+          }
+        });
+      </script>
 
-    <section class="cta">
-        <div class="container">
-            <h2>¿Listo para comenzar?</h2>
-            <button onclick="agendarLlamada()">Contáctanos ahora</button>
-        </div>
-    </section>
+      <!-- Marcador ÚNICO para el QR -->
+      <a-marker preset="hiro">
+        <!-- Las imágenes se mostrarán como planos 3D sobre el QR -->
+        <!-- FIG1 - Posicionada ligeramente por encima del QR -->
+        <a-image src="png/FIG1_final_cropped.png"
+                 width="1" height="1" position="0 0.6 0" rotation="0 0 0"></a-image>
 
-    <footer>
-        <div class="container">
-            <p>© 2025 TuMarcaDigital. Todos los derechos reservados.</p>
-            <p>contacto@tumarcadigital.com</p>
-        </div>
-    </footer>
+        <!-- FIG2 - Posicionada a la derecha del QR -->
+        <a-image src="png/FIG2_final_cropped.png"
+                 width="1" height="1" position="1.2 0 0" rotation="0 -30 0"></a-image>
 
-    <script src="script.js"></script>
-</body>
+        <!-- FIG3 - Posicionada a la izquierda del QR -->
+        <a-image src="png/FIG3_final_cropped.png"
+                 width="1" height="1" position="-1.2 0 0" rotation="0 30 0"></a-image>
+
+        <!-- FIG4 - Posicionada detrás del QR (para verla, tendrás que girar el QR) -->
+        <a-image src="png/FIG4_final_cropped.png"
+                 width="1" height="1" position="0 0 -1.2" rotation="0 180 0"></a-image>
+
+        <!-- FIG5 - Posicionada delante del QR (para verla, tendrás que alejarte un poco) -->
+        <a-image src="png/FIG5_final_cropped.png"
+                 width="1" height="1" position="0 0 1.2" rotation="0 0 0"></a-image>
+
+        <!-- Puedes añadir un texto o un modelo 3D central si quieres -->
+        <a-text value="¡Escaneaste el QR!" color="black" position="0 0.3 0" scale="0.5 0.5 0.5" align="center"></a-text>
+
+      </a-marker>
+
+      <!-- Cámara para la RA -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
