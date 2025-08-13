@@ -79,29 +79,32 @@
         <!-- Las imágenes se mostrarán como planos 3D sobre el QR -->
         <!-- FIG1 - Posicionada ligeramente por encima del QR -->
         <a-image src="png/FIG1_final_cropped.png"
-                 width="1" height="1" position="0 0.6 0" rotation="0 0 0"></a-image>
-
-        <!-- FIG2 - Posicionada a la derecha del QR -->
-        <a-image src="png/FIG2_final_cropped.png"
-                 width="1" height="1" position="1.2 0 0" rotation="0 -30 0"></a-image>
-
-        <!-- FIG3 - Posicionada a la izquierda del QR -->
-        <a-image src="png/FIG3_final_cropped.png"
-                 width="1" height="1" position="-1.2 0 0" rotation="0 30 0"></a-image>
-
-        <!-- FIG4 - Posicionada detrás del QR (para verla, tendrás que girar el QR) -->
-        <a-image src="png/FIG4_final_cropped.png"
-                 width="1" height="1" position="0 0 -1.2" rotation="0 180 0"></a-image>
-
-        <!-- FIG5 - Posicionada delante del QR (para verla, tendrás que alejarte un poco) -->
-        <a-image src="png/FIG5_final_cropped.png"
-                 width="1" height="1" position="0 0 1.2" rotation="0 0 0"></a-image>
-
-        <!-- Puedes añadir un texto o un modelo 3D central si quieres -->
-        <a-text value="¡Escaneaste el QR!" color="black" position="0 0.3 0" scale="0.5 0.5 0.5" align="center"></a-text>
-
+          width="1" height="2" position="0 0.5 0" rotation="0 0 0"></a-image>
       </a-marker>
 
+      <a-marker type="pattern" url="pattern/pattern-alpha.patt">
+        <!-- FIG2 - Posicionada a la derecha del QR -->
+        <a-image src="png/FIG2_final_cropped.png"
+          width="1" height="1" position="0 0.5 0" rotation="0 0 0"></a-image>
+      </a-marker>
+
+      <a-marker type="pattern" url="pattern/pattern-beta.patt"></a-marker>
+        <!-- FIG3 - Posicionada a la izquierda del QR -->
+        <a-image src="png/FIG3_final_cropped.png"
+          width="1" height="1" position="0 0.5 0" rotation="0 0 0"></a-image>
+      </a-marker>
+
+      <a-marker preset="Gamma">
+        <!-- FIG4 - Posicionada detrás del QR (para verla, tendrás que girar el QR) -->
+        <a-image src="png/FIG4_final_cropped.png"
+          width="1" height="1" position="0 0.5 0" rotation="0 0 0"></a-image>
+      </a-marker>
+
+      <a-marker preset="Delta">
+        <!-- FIG5 - Posicionada delante del QR (para verla, tendrás que alejarte un poco) -->
+        <a-image src="png/FIG5_final_cropped.png"
+          width="1" height="1" position="0 0.5 0" rotation="0 0 0"></a-image>
+      </a-marker>
       <!-- Cámara para la RA -->
       <a-entity camera></a-entity>
     </a-scene>
